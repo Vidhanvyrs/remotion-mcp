@@ -4,7 +4,7 @@ This guide walks you through the complete lifecycle of creating, inspecting, and
 
 ---
 
-## 🛠️ Step 1: Start the MCP Server
+## Step 1: Start the MCP Server
 
 To test the server locally with a visual user interface, start it using the **MCP Inspector**:
 
@@ -17,7 +17,7 @@ This will spin up a local web server and open a browser window at `http://localh
 
 ---
 
-## 📂 Step 2: Initialize a New Remotion Project
+## Step 2: Initialize a New Remotion Project
 
 Before rendering anything, you need a Remotion project with valid React template assets.
 
@@ -36,7 +36,7 @@ Before rendering anything, you need a Remotion project with valid React template
 
 ---
 
-## 🔍 Step 3: List Availables Compositions
+## Step 3: List Availables Compositions
 
 Once the project is initialized, you can query it to discover what animations/compositions are registered and ready to render.
 
@@ -62,7 +62,7 @@ You will get a JSON output listing the available compositions, including details
 
 ---
 
-## 🖼️ Step 4: Render a Still Image (Preview)
+## Step 4: Render a Still Image (Preview)
 
 Before rendering an entire video, it is best practice to render a single frame as a quick preview to check the visual composition.
 
@@ -84,7 +84,7 @@ Open this image on your machine to preview your text and logo aligned beautifull
 
 ---
 
-## 🎥 Step 5: Render the Full MP4 Video
+## Step 5: Render the Full MP4 Video
 
 Once you are satisfied with the layout preview, you are ready to render the final animation as a high-quality H.264 video.
 
@@ -103,7 +103,7 @@ Successfully rendered video to: /home/batman/MCPs/remotion-mcp/my-video/out.mp4
 
 ---
 
-## 🚀 Step 6: Customize & Edit
+## Step 6: Customize & Edit
 
 1. Open `/home/batman/MCPs/remotion-mcp/my-video/src/MyComposition.tsx` in your editor.
 2. Change the styling, add colors, or update text.
