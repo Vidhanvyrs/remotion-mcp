@@ -10,6 +10,7 @@ import { registerRenderStill } from "./tools/renderStill.js";
 import { registerCreateComposition } from "./tools/createComposition.js";
 import { registerInitProject } from "./tools/initProject.js";
 import { registerUpdateComposition } from "./tools/updateComposition.js";
+import { registerGetCompositionCode } from "./tools/getCompositionCode.js";
 
 // Intercept and redirect all non-JSON stdout writes to stderr.
 // This prevents external libraries (like Remotion, Webpack, or Chromium) 
@@ -42,6 +43,7 @@ function registerTools(server: McpServer): void {
     registerCreateComposition(server);
     registerInitProject(server);
     registerUpdateComposition(server);
+    registerGetCompositionCode(server);
 }
 
 // ── Main: stdio (for Claude Desktop / Claude Code) ────────────────
