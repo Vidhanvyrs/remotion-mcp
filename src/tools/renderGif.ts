@@ -1,6 +1,6 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { renderStill, selectComposition } from "@remotion/renderer";
+import { renderMedia, selectComposition } from "@remotion/renderer";
 import { getBundleUrl } from "../utils/bundle.js";
 import { getBrowserExecutablePath } from "../utils/browser.js";
 import path from "node:path";
@@ -8,18 +8,17 @@ import os from "node:os";
 import fs from "node:fs/promises";
 import { formatError } from "../utils/errors.js";
 
-export function registerRenderStill(server: McpServer): void {
+export function registerRenderGif(server: McpServer): void {
     server.tool(
-        "render_still",
-        "Render a Remotion composition as a still image",
+        "render_gif",
+        "Render a Remotion composition as an animated GIF",
         {
             serveUrl: z.string().describe("Path to the Remotion project (e.g., ./src/index.ts)"),
             compositionId: z.string().describe("The ID of the composition to render"),
-            frame: z.number().optional().describe("The frame number to render (default: 0)"),
             inputProps: z.string().optional().describe("JSON string of input props"),
-            outName: z.string().optional().describe("Output file name or absolute path (default: out.png)"),
+            outName: z.string().optional().describe("Output file name or absolute path (default: out.gif)"),
         },
-        async ({ serveUrl, compositionId, frame, inputProps, outName }) => {
+        async ({ serveUrl, compositionId, inputProps, outName }) => {
             try {
                 const bundledUrl = await getBundleUrl(serveUrl);
                 const parsedProps = inputProps ? JSON.parse(inputProps) : {};
@@ -34,31 +33,31 @@ export function registerRenderStill(server: McpServer): void {
 
                 let outPath = outName && path.isAbsolute(outName)
                     ? outName
-                    : path.join(os.tmpdir(), outName || `out-${Date.now()}.png`);
+                    : path.join(os.tmpdir(), outName || `out-${Date.now()}.gif`);
 
                 // Automatically resolve directory paths and missing extensions
                 try {
                     const stats = await fs.stat(outPath);
                     if (stats.isDirectory()) {
-                        outPath = path.join(outPath, "out.png");
+                        outPath = path.join(outPath, "out.gif");
                     }
                 } catch {
                     const ext = path.extname(outPath).toLowerCase();
-                    if (![".png", ".jpg", ".jpeg", ".webp"].includes(ext)) {
+                    if (ext !== ".gif") {
                         if (outPath.endsWith("/")) {
-                            outPath = path.join(outPath, "out.png");
+                            outPath = path.join(outPath, "out.gif");
                         } else {
-                            outPath = outPath + ".png";
+                            outPath = outPath + ".gif";
                         }
                     }
                 }
 
-                await renderStill({
+                await renderMedia({
                     composition,
                     serveUrl: bundledUrl,
-                    output: outPath,
+                    codec: "gif",
+                    outputLocation: outPath,
                     inputProps: parsedProps,
-                    frame: frame ?? 0,
                     browserExecutable,
                 });
 
@@ -66,7 +65,7 @@ export function registerRenderStill(server: McpServer): void {
                     content: [
                         {
                             type: "text",
-                            text: `Successfully rendered still image to: ${outPath}`,
+                            text: `Successfully rendered GIF to: ${outPath}`,
                         },
                     ],
                 };

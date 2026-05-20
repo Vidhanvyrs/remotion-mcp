@@ -6,6 +6,7 @@ import { getBrowserExecutablePath } from "../utils/browser.js";
 import path from "node:path";
 import os from "node:os";
 import fs from "node:fs/promises";
+import { formatError } from "../utils/errors.js";
 
 export function registerRenderVideo(server: McpServer): void {
     server.tool(
@@ -71,7 +72,7 @@ export function registerRenderVideo(server: McpServer): void {
                 };
             } catch (error) {
                 return {
-                    content: [{ type: "text", text: `Error rendering video: ${error instanceof Error ? error.message : String(error)}` }],
+                    content: [{ type: "text", text: formatError(error) }],
                     isError: true,
                 };
             }

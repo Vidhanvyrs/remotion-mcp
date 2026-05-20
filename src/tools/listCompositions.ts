@@ -3,6 +3,7 @@ import { z } from "zod";
 import { getCompositions } from "@remotion/renderer";
 import { getBundleUrl } from "../utils/bundle.js";
 import { getBrowserExecutablePath } from "../utils/browser.js";
+import { formatError } from "../utils/errors.js";
 
 export function registerListCompositions(server: McpServer): void {
     server.tool(
@@ -32,7 +33,7 @@ export function registerListCompositions(server: McpServer): void {
                     content: [
                         {
                             type: "text",
-                            text: `Error listing compositions: ${error instanceof Error ? error.message : String(error)}`,
+                            text: formatError(error),
                         },
                     ],
                     isError: true,
