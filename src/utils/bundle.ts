@@ -4,6 +4,14 @@ import path from "node:path";
 
 const bundleCache = new Map<string, string>();
 
+export function clearBundleCache(serveUrl?: string): void {
+    if (serveUrl) {
+        bundleCache.delete(serveUrl);
+    } else {
+        bundleCache.clear();
+    }
+}
+
 export async function getBundleUrl(serveUrl: string): Promise<string> {
     if (serveUrl.startsWith("http")) {
         return serveUrl;

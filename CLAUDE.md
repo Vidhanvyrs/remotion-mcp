@@ -1,0 +1,107 @@
+# CLAUDE.md — Remotion MCP Server Development Guide
+
+This guide is designed for AI assistants and developers working on the `remotion-mcp` codebase. It details build/run workflows, architecture, tools reference, and design guidelines.
+
+---
+
+## 🛠️ CLI Reference (Commands)
+
+### Development & Inspection
+* **Local Inspection (Stdio Mode):**
+  ```bash
+  npx @modelcontextprotocol/inspector npx tsx src/index.ts
+  ```
+* **Run Server directly (TypeScript):**
+  ```bash
+  npx tsx src/index.ts
+  ```
+* **Run HTTP Mode (Local):**
+  ```bash
+  MCP_MODE=http PORT=3000 npx tsx src/index.ts
+  ```
+
+### Build & Production
+* **Build TypeScript Project:**
+  ```bash
+  npm run build
+  ```
+* **Run Compiled Server (Stdio):**
+  ```bash
+  node dist/index.js
+  ```
+* **Run Compiled Server (HTTP):**
+  ```bash
+  MCP_MODE=http PORT=3000 node dist/index.js
+  ```
+
+---
+
+## 📂 Project Architecture
+
+```text
+remotion-mcp/
+├── src/
+│   ├── index.ts               # Entry point (handles stdio and http express transport, stdout redirection)
+│   ├── tools/
+│   │   ├── initProject.ts     # Scaffolds new Remotion projects (copies React template files)
+│   │   ├── listCompositions.ts# Lists registered React animations in a target Remotion project
+│   │   ├── renderStill.ts     # Renders a single frame (still image) using local system browser
+│   │   ├── renderVideo.ts     # Renders the full composition into an MP4 video using system Chrome
+│   │   └── createComposition.ts# (Optional) registers compositions
+│   └── utils/
+│       ├── browser.ts         # Dynamically detects system Chrome/Chromium to prevent CDN downloading
+│       └── bundle.ts          # Wraps @remotion/bundler to bundle target Remotion index files
+├── tsconfig.json              # TypeScript compilation config
+├── package.json               # Dependencies and build scripts
+├── test.md                    # Step-by-step user testing tutorial
+└── CLAUDE.md                  # This AI/developer context file
+```
+
+---
+
+## 🚀 MCP Tools Reference
+
+### 1. `init_remotion_project`
+Scaffolds a lightweight, performant React-Remotion video editing layout.
+* **Arguments:**
+  * `directory` (string, required): Absolute target path to bootstrap the project (e.g. `/home/batman/MCPs/remotion-mcp/my-video`).
+* **Under the hood:** Creates files, installs packages, and writes a clean ESM-friendly extensionless index layout.
+
+### 2. `list_compositions`
+Scans a target project to discover registered compositions.
+* **Arguments:**
+  * `serveUrl` (string, required): Absolute path to the project entry point (e.g. `/home/batman/MCPs/remotion-mcp/my-video/src/index.ts`).
+* **Result:** Returns details of all compositions (`id`, `width`, `height`, `fps`, `durationInFrames`).
+
+### 3. `render_still`
+Renders a single frame of a composition as a still image (PNG/JPEG/WebP).
+* **Arguments:**
+  * `serveUrl` (string, required): Entry point path.
+  * `compositionId` (string, required): The ID of the composition.
+  * `frame` (number, optional, default: `0`): The frame to render. *(Pro-tip: Frame `0` is often blank due to fade-in transitions. Use frame `30` or higher to preview components!)*
+  * `outName` (string, optional): Output path. If a directory path is entered, it automatically appends `/out.png`.
+
+### 4. `render_video`
+Compiles and renders the entire sequence of frames, stitching them into an MP4 video.
+* **Arguments:**
+  * `serveUrl` (string, required): Entry point path.
+  * `compositionId` (string, required): The ID of the composition.
+  * `outName` (string, optional): Output video path. If a directory path is entered, it automatically appends `/out.mp4`.
+
+---
+
+## 🎨 Development & Code Guidelines
+
+### 1. Protect the Stdio Stream! (CRITICAL)
+In `stdio` mode, the client reads JSON-RPC frames over `stdout`. **Any library writing standard logs or download status to `stdout` breaks the connection.**
+* **What we did:** We added a global interceptor in `src/index.ts` that redirects any output NOT starting with `{` to `stderr` (`process.stderr.write`).
+* **Guideline:** Never add raw `console.log` statements in server code. Use `console.error` (which naturally writes to `stderr` and gets safely ignored by JSON-RPC parsers) to print debug messages.
+
+### 2. Avoid Browser Downloads (Timeouts)
+Remotion's SSR package attempts to download its own `chrome-headless-shell` from a remote CDN if it isn't cached. Over the internet, this causes MCP request timeouts.
+* **What we did:** Added `src/utils/browser.ts` which detects system-installed Google Chrome (e.g., `/usr/bin/google-chrome`) and passes it under the `browserExecutable` option to all Remotion APIs.
+* **Guideline:** Always resolve local Chrome and pass the path to `selectComposition`, `getCompositions`, `renderStill`, and `renderMedia`.
+
+### 3. Webpack Resolving & Imports
+Remotion runs in a browser and uses Webpack. Webpack is extension-sensitive for ES modules.
+* **Guideline:** React code templates generated by `initProject.ts` must use **extensionless relative imports** (e.g., `import { Root } from "./Root"`, **NOT** `./Root.js`) so that Webpack resolves them cleanly to `.tsx` or `.ts` files inside the browser environment.
