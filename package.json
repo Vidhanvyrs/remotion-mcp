@@ -1,17 +1,46 @@
 {
   "name": "remotion-mcp",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "tsc",
-    "dev": "tsx src/index.ts",
-    "start": "node dist/index.js"
+  "description": "MCP server for AI-powered Remotion video creation — render videos, stills, and GIFs directly from your AI assistant",
+  "main": "dist/index.js",
+  "bin": {
+    "remotion-mcp": "dist/index.js"
   },
-  "keywords": [],
-  "author": "",
+  "scripts": {
+    "build": "tsc && npm run postbuild",
+    "postbuild": "node -e \"const fs=require('fs');const f='dist/index.js';fs.writeFileSync(f,'#!/usr/bin/env node\\n'+fs.readFileSync(f,'utf8'));fs.chmodSync(f,0o755);console.log('Added shebang to dist/index.js');\"",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "start:http": "MCP_MODE=http node dist/index.js",
+    "test": "npx tsx tests/smoke.ts"
+  },
+  "keywords": [
+    "mcp",
+    "remotion",
+    "video",
+    "ai",
+    "model-context-protocol",
+    "animation"
+  ],
+  "author": "your-name <your-email@example.com>",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/remotion-mcp"
+  },
+  "homepage": "https://github.com/your-username/remotion-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/your-username/remotion-mcp/issues"
+  },
   "type": "module",
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.29.0",
     "@remotion/bundler": "4.0.462",
