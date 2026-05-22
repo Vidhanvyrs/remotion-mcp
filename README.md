@@ -9,7 +9,10 @@ Give Claude, Cursor, or Windsurf the ability to:
 - 📁 Inspect project file trees and read/write composition files
 - ⏱️ Track long renders asynchronously via job IDs
 
+📖 **New here? Read the [Getting Started guide](./GETTING_STARTED.md)**
+
 ---
+
 
 ## Quick Start
 
