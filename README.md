@@ -120,7 +120,7 @@ See [DEPLOYMENT.md](./DEPLOYMENT.md) for Railway, Fly.io, and Docker instruction
 ## Development
 
 ```bash
-git clone https://github.com/your-org/remotion-mcp
+git clone https://github.com/Vidhanvyrs/remotion-mcp
 cd remotion-mcp
 npm install
 npm run dev          # run with tsx (no build needed)

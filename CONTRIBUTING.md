@@ -102,7 +102,7 @@ npm test
 ## Development Setup
 
 ```bash
-git clone https://github.com/your-org/remotion-mcp
+git clone https://github.com/Vidhanvyrs/remotion-mcp
 cd remotion-mcp
 npm install
 

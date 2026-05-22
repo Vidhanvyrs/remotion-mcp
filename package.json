@@ -22,15 +22,15 @@
     "model-context-protocol",
     "animation"
   ],
-  "author": "your-name <your-email@example.com>",
+  "author": "Vidhanvyrs",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/remotion-mcp"
+    "url": "https://github.com/Vidhanvyrs/remotion-mcp"
   },
-  "homepage": "https://github.com/your-username/remotion-mcp#readme",
+  "homepage": "https://github.com/Vidhanvyrs/remotion-mcp#readme",
   "bugs": {
-    "url": "https://github.com/your-username/remotion-mcp/issues"
+    "url": "https://github.com/Vidhanvyrs/remotion-mcp/issues"
   },
   "type": "module",
   "files": [
