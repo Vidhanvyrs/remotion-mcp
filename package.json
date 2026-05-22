@@ -1,6 +1,6 @@
 {
   "name": "remotion-mcp",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "MCP server for AI-powered Remotion video creation — render videos, stills, and GIFs directly from your AI assistant",
   "main": "dist/index.js",
   "bin": {
