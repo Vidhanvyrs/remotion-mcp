@@ -9,7 +9,14 @@ Give Claude, Cursor, or Windsurf the ability to:
 - 📁 Inspect project file trees and read/write composition files
 - ⏱️ Track long renders asynchronously via job IDs
 
-📖 **New here? Read the [Getting Started guide](./GETTING_STARTED.md)**
+📖 **New here? Read the [Getting Started guide](./GETTING_STARTED.md)**  
+🍳 **Want real examples? Browse the [Cookbooks](./examples/)**
+
+| Cookbook | What You Build |
+|----------|---------------|
+| [01 — YouTube Intro](./examples/01-youtube-intro/) | Animated title card MP4 in 5 prompts |
+| [02 — Data-Driven Video](./examples/02-data-driven-video/) | Render one template with N different datasets |
+| [03 — Edit & Iterate](./examples/03-iterate-with-ai/) | Fast read → edit → preview loop |
 
 ---
 
