@@ -13,6 +13,8 @@ Each cookbook shows the **exact prompts**, the **tool calls they trigger**, and 
 | [02](./02-data-driven-video/) | Data-Driven Sales Recap | Parameterized video via `inputProps` | ~8 min |
 | [03](./03-iterate-with-ai/) | Edit & Iterate Loop | Read → modify → preview cycle | ~5 min |
 
+> 🎬 Cookbooks **01** and **02** include full **video walkthroughs** — watch the entire workflow from prompt to rendered output.
+
 ---
 
 ## How to Read These

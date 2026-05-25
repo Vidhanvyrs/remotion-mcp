@@ -5,6 +5,10 @@
 **Time:** ~8 minutes  
 **Tools used:** `init_remotion_project`, `query_remotion_docs`, `update_composition`, `render_still`, `render_video`
 
+### 🎥 Watch the full walkthrough
+
+<video src="../cookbook102.mp4" controls width="100%" alt="Cookbook 02 — Data-Driven Video walkthrough"></video>
+
 **The key concept:** `inputProps` lets you pass a JSON object into any composition at render time. Your React component receives them as props — so one template = infinite variations.
 
 ---

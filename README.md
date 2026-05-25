@@ -4,13 +4,13 @@
 
 Give Claude, Cursor, or Windsurf the ability to:
 - 🎬 Render MP4 videos, stills (PNG/JPEG), and animated GIFs
-- 🧩 Scaffold and edit React/Remotion components
-- 🚀 Pass dynamic `inputProps` for data-driven video generation
-- 📁 Inspect project file trees and read/write composition files
-- ⏱️ Track long renders asynchronously via job IDs
+- Scaffold and edit React/Remotion components
+- Pass dynamic `inputProps` for data-driven video generation
+- Inspect project file trees and read/write composition files
+- Track long renders asynchronously via job IDs
 
-📖 **New here? Read the [Getting Started guide](./GETTING_STARTED.md)**  
-🍳 **Want real examples? Browse the [Cookbooks](./examples/)**
+ **New here? Read the [Getting Started guide](./GETTING_STARTED.md)**  
+ **Want real examples? Check out the [Cookbook →](./examples/README.md)** — step-by-step video tutorials with exact prompts
 
 | Cookbook | What You Build |
 |----------|---------------|
@@ -22,6 +22,10 @@ Give Claude, Cursor, or Windsurf the ability to:
 
 
 ## Quick Start
+
+### 🎥 See it in action
+
+<video src="./examples/setupinide.mp4" controls width="100%" alt="Setting up remotion-mcp in your IDE"></video>
 
 ### Prerequisites
 - Node.js ≥ 18

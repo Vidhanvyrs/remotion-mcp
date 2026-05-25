@@ -5,6 +5,10 @@
 **Time:** ~5 minutes of prompting, ~3 minutes of rendering  
 **Tools used:** `init_remotion_project`, `list_project_files`, `add_component`, `render_still`, `render_video`
 
+### 🎥 Watch the full walkthrough
+
+<video src="../cookbook101.mp4" controls width="100%" alt="Cookbook 01 — YouTube Channel Intro walkthrough"></video>
+
 ---
 
 ## Step 1 — Scaffold the project
