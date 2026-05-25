@@ -25,7 +25,7 @@ Give Claude, Cursor, or Windsurf the ability to:
 
 ### 🎥 See it in action
 
-<video src="./examples/setupinide.mp4" controls width="100%" alt="Setting up remotion-mcp in your IDE"></video>
+https://github.com/Vidhanvyrs/remotion-mcp/raw/master/examples/setupinide.mp4
 
 ### Prerequisites
 - Node.js ≥ 18

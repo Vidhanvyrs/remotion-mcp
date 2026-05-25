@@ -7,7 +7,7 @@
 
 ### 🎥 Watch the full walkthrough
 
-<video src="../cookbook102.mp4" controls width="100%" alt="Cookbook 02 — Data-Driven Video walkthrough"></video>
+https://github.com/Vidhanvyrs/remotion-mcp/raw/master/examples/cookbook102.mp4
 
 **The key concept:** `inputProps` lets you pass a JSON object into any composition at render time. Your React component receives them as props — so one template = infinite variations.
 

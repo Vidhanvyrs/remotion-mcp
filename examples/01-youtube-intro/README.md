@@ -7,7 +7,7 @@
 
 ### 🎥 Watch the full walkthrough
 
-<video src="../cookbook101.mp4" controls width="100%" alt="Cookbook 01 — YouTube Channel Intro walkthrough"></video>
+https://github.com/Vidhanvyrs/remotion-mcp/raw/master/examples/cookbook101.mp4
 
 ---
 
