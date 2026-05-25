@@ -32,6 +32,9 @@ logs/
 .cache/
 .remotion/
 
+# Allow documentation/example videos
+!examples/*.mp4
+
 # IDE & Editor files
 .vscode/
 .idea/
